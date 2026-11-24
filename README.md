@@ -38,5 +38,4 @@ TODO
 - TODO
 
 ## Declaração de uso de IA
-- Código base (`vlm_client.py`, `app.py`, `avaliar.py`) gerado com ajuda do Claude Code, adaptado das funções do notebook da Aula 09.
-- TODO: listar o que mais foi gerado com IA.
+TODO
