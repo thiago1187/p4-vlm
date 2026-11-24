@@ -1,62 +1,79 @@
-# P4 · Divisão de tarefas
+# P4 · Plano de trabalho: calorias do prato
 
-**Prazo:** apresentação presencial na **segunda, 30/11**. A nota considera o repositório como estiver no prazo.
-**Nota:** 30% originalidade · 30% app com VLM · 40% apresentação (cada integrante precisa estar presente e falar).
+**Apresentação:** segunda, 30/11/2026, presencial, 10 a 15 min. Vale o estado do repositório nessa data.
+**Nota:** 30% originalidade · 30% app com VLM · 40% apresentação (todos presentes e falando).
 
-## Já pronto no repositório
-- `vlm_client.py`: `perguntar_vlm`, `extrair_json`, `img_para_data_url` do notebook da Aula 09, com a chave lida do `.env`
-- `app.py`: Streamlit com upload/câmera, botão Analisar, JSON na tela, erros e histórico
-- `prompts.py`: prompt de sistema anti-alucinação + esquema de exemplo (trocar pela nossa ideia)
-- `avaliar.py`: roda o VLM nas imagens de `exemplos/` e calcula a acurácia por campo
-- `requirements.txt`, `.env.example`, `.gitignore` (o `.env` nunca vai para o GitHub)
+## Quem faz o quê (sugestão: troquem à vontade)
+| Parte | Responsável | Apresenta |
+|---|---|---|
+| Modelo e prompt | Thiago | Problema, usuário, por que VLM, prompt e JSON |
+| Interface | Henrique | Demo ao vivo e por que Streamlit |
+| Testes e documentação | Alana | Acurácia, erros reais e limitações |
 
-## Todos juntos (hoje/amanhã)
-- [ ] Escolher a ideia e escrever a frase: *"Para <usuário>, que precisa <tarefa>, o app recebe <imagem> e devolve <saída>"*
-- [ ] Cada um cria sua chave em console.groq.com (plano gratuito tem limite por minuto, então é melhor ter 3 chaves)
-- [ ] Definir o esquema JSON de saída (os campos)
+## O que precisa estar entregue em 30/11
+- [ ] Link do repositório GitHub no Classroom
+- [ ] `README.md` escrito pelo grupo: problema, usuário, modelo/API, como rodar, por que Streamlit, declaração de uso de IA
+- [ ] `app.py` + `requirements.txt` + `.env.example` (sem chave!)
+- [ ] Prints ou vídeo curto do app
+- [ ] Tabela de avaliação com 5+ fotos reais (`avaliacao.csv`)
+- [ ] Slides
+- [ ] Apresentação com demo ao vivo, prompt, JSON e pelo menos 2 erros reais do modelo
 
-## Pessoa 1 · Modelo e prompt
-- [ ] Trocar `PROMPT` e `CAMPOS_OBRIGATORIOS` em `prompts.py` pelo esquema da ideia
-- [ ] Testar o prompt com 3-4 imagens antes de ir para o app; ajustar até o JSON sair estável
-- [ ] Testar uma pergunta com premissa falsa (Aula 09 · 3.7) e ver se o prompt de sistema segura
-- [ ] **Apresenta:** problema, usuário, por que VLM e não YOLO/CLIP, o prompt e o esquema JSON
+---
 
-## Pessoa 2 · Interface
-- [ ] Dar nome ao app e mostrar o resultado de forma legível (cards, tabela, alertas), mantendo o JSON num expander
-- [ ] Conferir as mensagens de erro: sem chave, imagem PNG, JSON inválido, limite de taxa
-- [ ] Tirar os prints (ou gravar um vídeo curto) do app funcionando
-- [ ] **Apresenta:** a demo ao vivo e por que escolhemos Streamlit
+## Parte 0 · Preparação (todos, ter 24)
+- [x] Repositório criado e base do app pronta (`vlm_client.py`, `app.py`, `avaliar.py`)
+- [x] Conexão com o Groq testada (`qwen/qwen3.8-27b`)
+- [ ] Cada um cria sua chave em console.groq.com e o próprio `.env` (copiando o `.env.example`)
+- [ ] Henrique aceita o convite do repositório · Alana envia o usuário do GitHub
+- [ ] Cada um roda o app no próprio computador (passo a passo no fim)
 
-## Pessoa 3 · Testes e documentação
-- [ ] Juntar pelo menos 5 imagens reais em `exemplos/` (fotos nossas, não da internet de preferência)
-- [ ] `python avaliar.py rodar`, preencher à mão `esperado` e `acertou` no `avaliacao.csv`, depois `python avaliar.py acuracia`
-- [ ] Separar pelo menos 2 erros reais do modelo e o que fizemos para reduzir
-- [ ] Puxar a escrita do README (tem que ser autoral, com a declaração de uso de IA)
-- [ ] **Apresenta:** tabela de acurácia, os erros e as limitações (alucinação, contagem, custo em tokens)
+## Parte 1 · Proposta (todos, ter 24 a qua 25)
+- [ ] Escrever a frase: *"Para <usuário>, que precisa <tarefa>, o app recebe <imagem> e devolve <saída>"*
+- [ ] Definir o diferencial: texto complementar ("comi só metade") + o app dizer quando não sabe
+- [ ] Escrever o argumento "por que VLM e não YOLO ou CLIP"
 
-## Slides (10-15 min) · cada um faz os slides da sua parte
-1. Problema e usuário (P1)
-2. Por que VLM (P1)
-3. Prompt + esquema JSON (P1)
-4. Demo ao vivo (P2)
-5. Acurácia por campo (P3)
-6. Erros reais e o que fizemos (P3)
-7. Limitações e próximos passos (P3)
+## Parte 2 · Modelo e prompt (Thiago, qua 25 a qui 26)
+- [ ] Trocar o prompt genérico de `prompts.py` pelo de calorias (alimentos, porção, kcal, total, confiança, observação)
+- [ ] Regras no prompt de sistema: não inventar ingredientes, marcar o que não identificou, deixar claro que é estimativa
+- [ ] Usar o texto opcional do usuário no prompt
+- [ ] Validação: campos obrigatórios + total igual à soma dos alimentos
+- [ ] Testar com 3 ou 4 fotos até o JSON sair estável
 
-## Cronograma
-| Dia | O quê |
-|---|---|
-| Ter 24 | Ideia escolhida, chaves criadas, repositório no GitHub |
-| Qua 25 | P1 prompt funcionando · P2 interface · P3 coleta e anota imagens |
-| Qui 26 | Integrar prompt no app · P3 roda a avaliação |
-| Sex 27 | Ajustar o prompt com base nos erros · README |
-| Sáb 28 | Slides e prints |
-| Dom 29 | Ensaio da apresentação · último push |
-| Seg 30 | Apresentação |
+## Parte 3 · Interface (Henrique, qua 25 a sex 27)
+- [ ] Campo de texto "informação extra" ao lado da foto
+- [ ] Tabela com alimento, porção e calorias + total em destaque
+- [ ] Aviso "resultado aproximado" e lista do que não foi identificado
+- [ ] JSON completo escondido em "ver detalhes"
+- [ ] Mensagens de erro claras (sem chave, sem internet, JSON inválido, limite de uso)
+- [ ] Prints ou vídeo curto do app funcionando
+
+## Parte 4 · Testes (Alana, qua 25 a sex 27)
+- [ ] Tirar 6 a 8 fotos reais de pratos em `exemplos/` (incluir 1 ou 2 comidas com tabela nutricional)
+- [ ] `python avaliar.py rodar` → preencher à mão `esperado` e `acertou` no `avaliacao.csv`
+- [ ] Critério: *alimentos* acertou se reconheceu os principais itens · *kcal_total* acertou se ficou até ±30%
+- [ ] `python avaliar.py acuracia` → tabela de acurácia por campo
+- [ ] Separar 2 erros reais e testar uma correção (ex.: garfo ao lado como referência, texto complementar)
+- [ ] Extra opcional: rodar a mesma foto 3 vezes e ver se as calorias mudam
+
+## Parte 5 · README e slides (todos, sex 27 a sáb 28)
+- [ ] README escrito pelo grupo (Alana puxa; o Claude só ajuda a organizar e revisar)
+- [ ] Slides, cada um faz os da sua parte:
+  1. Problema e usuário · 2. Por que VLM · 3. Prompt e JSON (Thiago)
+  4. Demo ao vivo (Henrique)
+  5. Acurácia · 6. Erros reais e o que fizemos · 7. Limitações (Alana)
+
+## Parte 6 · Ensaio e entrega (todos, dom 29 a seg 30)
+- [ ] Ensaio cronometrado (10 a 15 min)
+- [ ] Rodar o app do zero com `pip install -r requirements.txt` para garantir que funciona
+- [ ] Último push e link no Classroom
+- [ ] Plano B da demo: prints/vídeo, caso a internet ou a API falhe na hora
+
+---
 
 ## Como rodar
 ```bash
 pip install -r requirements.txt
-cp .env.example .env   # cole sua GROQ_API_KEY
+cp .env.example .env   # cole sua GROQ_API_KEY no .env (nunca no .env.example)
 streamlit run app.py
 ```
