@@ -16,7 +16,7 @@ def abrir_imagem(conteudo):
         raise ValueError(f"A foto deve ter no máximo {LIMITE_IMAGEM_MB} MB.")
     try:
         with Image.open(io.BytesIO(conteudo)) as original:
-            if original.format not in {"JPEG", "PNG", "WEBP"}:
+            if original.format not in {"JPEG", "MPO", "PNG", "WEBP"}:
                 raise ValueError("Use uma imagem JPG, PNG ou WebP.")
             if original.width * original.height > 25_000_000:
                 raise ValueError("A imagem tem resolução muito alta. Reduza para até 25 megapixels.")
