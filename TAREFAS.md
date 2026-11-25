@@ -25,7 +25,7 @@
 - [x] Repositório criado e base do app pronta (`vlm_client.py`, `app.py`, `avaliar.py`)
 - [x] Conexão com o Groq testada (`qwen/qwen3.8-27b`)
 - [x] Cada um cria sua chave em console.groq.com e o próprio `.env` (copiando o `.env.example`)
-- [ ] Henrique aceita o convite do repositório · Alana envia o usuário do GitHub
+- [ ] Henrique e Alana aceitam o convite do repositório (já enviado)
 - [x] Cada um roda o app no próprio computador (passo a passo no fim)
 
 ## Parte 1 · Proposta (todos, ter 24 a qua 25)
